@@ -11,7 +11,7 @@ Please click <a href="http://demo.ebizdesigner.com/whereiam" target="_blank"> <b
 <img width=30% src="whereiam-map.jpg"></img>&nbsp;
 </div>
 
-I build ‘whereiam’ Sencha Touch app with following features: 
+WhereIAm Sencha Touch app with following features: 
 - Develop tool: Sencha Architect & Sencha Touch (2.*)
 - Use HTML 5 Geolocation API to fetch device's geography address: latitude and longitude
 - Use Google Map API to convert geo address to real world detail address: no, street/road, city, state, country, postcode
