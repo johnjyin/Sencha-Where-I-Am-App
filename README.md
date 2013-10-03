@@ -6,9 +6,9 @@ One Sencha Touch & Google Map Mobile App
 Please click <a href="http://demo.ebizdesigner.com/whereiam" target="_blank"> <b>Here</b> </a> to run this mobile app.
 
 <div name="thumbnail">
-<img width=30% src="./resources/img/whereiam-welcome.jpg"></img>&nbsp;
-<img width=30% src="./resources/img/whereiam-address.jpg"></img>&nbsp;
-<img width=30% src="./resources/img/whereiam-map.jpg"></img>&nbsp;
+<img width=30% src="whereiam-welcome.jpg"></img>&nbsp;
+<img width=30% src="whereiam-address.jpg"></img>&nbsp;
+<img width=30% src="whereiam-map.jpg"></img>&nbsp;
 </div>
 
 I build ‘whereiam’ Sencha Touch app with following features: 
