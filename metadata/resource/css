@@ -1,0 +1,13 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css",
+        "url": "whereiam.css"
+    },
+    "designerId": "8ebeff1b-b0ac-48d6-8e85-d068bc0ae726"
+}

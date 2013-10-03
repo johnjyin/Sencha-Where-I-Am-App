@@ -1,0 +1,342 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "AddressCtrl"
+    },
+    "designerId": "3c245df5-34ef-4285-ae85-43a09c59c9ad",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getPosition",
+                "designer|params": [
+                    "callback"
+                ],
+                "implHandler": [
+                    "if (navigator && navigator.geolocation) {\r",
+                    "\r",
+                    "    navigator.geolocation.getCurrentPosition(\r",
+                    "    function(position) { \r",
+                    "        callback(position); \r",
+                    "    }, \r",
+                    "    function(error) {\r",
+                    "        // Handle the error\r",
+                    "        Ext.Msg.alert( 'Error(' + err.code + '): ' + err.message );\r",
+                    "        return false;\r",
+                    "    }\r",
+                    "    );\r",
+                    "\r",
+                    "} else {\r",
+                    "    Ext.Msg.alert(\"Info: Geolocation is not supported by this browser!\");\r",
+                    "    return false;\r",
+                    "}\r",
+                    ""
+                ]
+            },
+            "designerId": "9cb0d045-52fe-4cf7-a89a-731365278795"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getAddress",
+                "designer|params": [
+                    "location",
+                    "callback"
+                ],
+                "implHandler": [
+                    "// define variables\r",
+                    "var store = Ext.data.StoreManager.lookup('addressStore'),\r",
+                    "    lati = location.coords.latitude,\r",
+                    "    longi = location.coords.longitude,\r",
+                    "    geoAddress = {},   // JSON data object \r",
+                    "    addressItems = [], // Array object having detail address\r",
+                    "    addressItem;       // Temp object for each item of address \r",
+                    "\r",
+                    "// remove old data\r",
+                    "store.remove( store.getRange() );\r",
+                    "store.sync(); // it just remove from localstorage. \r",
+                    "\r",
+                    "// call google api to fetch geo address by lati & longi\r",
+                    "var latlng = new google.maps.LatLng(lati, longi);\r",
+                    "geocoder = this._geocoder || ( this._geocoder = new google.maps.Geocoder() );\r",
+                    "\r",
+                    "// begin to decode geo address to detail address \r",
+                    "geocoder.geocode({'latLng': latlng}, function(results, status) {\r",
+                    "if ( status == google.maps.GeocoderStatus.OK ) {\r",
+                    "\r",
+                    "    if (results[1]) {\r",
+                    "        \r",
+                    "        // transfer geo address to Map\r",
+                    "        detailMap._lati = lati;\r",
+                    "        detailMap._longi = longi;\r",
+                    "\t\t\r",
+                    "        // store geo address only when google geocoder.geocode() successfully\r",
+                    "        geoAddress.addressItems = addressItems;\r",
+                    "        addressItem = { 'item': 'Latitude', 'value': lati };\r",
+                    "        geoAddress.addressItems.push( addressItem );\r",
+                    "        addressItem = { 'item': 'Longitude', 'value': longi };\r",
+                    "        geoAddress.addressItems.push( addressItem );\r",
+                    "\r",
+                    "        // decode results[0] (detail address) into JSON data object\r",
+                    "        for (var i=0; i<results[0].address_components.length; i++) {\r",
+                    "            for (var b=0; b<results[0].address_components[i].types.length; b++) {\r",
+                    "                //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate\r",
+                    "                var addressType = results[0].address_components[i].types[b];\r",
+                    "                switch ( addressType ){\r",
+                    "                    case 'street_number' :\r",
+                    "                    addressItem = {\r",
+                    "                        'item': 'No', \r",
+                    "                    'value': results[0].address_components[i].long_name };\r",
+                    "                    geoAddress.addressItems.push( addressItem );\r",
+                    "                    break;\r",
+                    "\r",
+                    "                    case 'route' :\r",
+                    "                    addressItem = {\r",
+                    "                        'item': 'Street', \r",
+                    "                    'value': results[0].address_components[i].long_name };\r",
+                    "                    geoAddress.addressItems.push( addressItem );\r",
+                    "                    break;\r",
+                    "\r",
+                    "                    case 'locality' :\r",
+                    "                    addressItem = {\r",
+                    "                        'item': 'City', \r",
+                    "                    'value': results[0].address_components[i].long_name };\r",
+                    "                    geoAddress.addressItems.push( addressItem );\r",
+                    "                    break;\t\r",
+                    "\r",
+                    "                    case 'administrative_area_level_1' :\r",
+                    "                    addressItem = {\r",
+                    "                        'item': 'State', \r",
+                    "                    'value': results[0].address_components[i].long_name };\r",
+                    "                    geoAddress.addressItems.push( addressItem );\r",
+                    "                    break;\t\r",
+                    "\r",
+                    "                    case 'country' :\r",
+                    "                    addressItem = {\r",
+                    "                        'item': 'Country', \r",
+                    "                    'value': results[0].address_components[i].long_name };\r",
+                    "                    geoAddress.addressItems.push( addressItem );\r",
+                    "                    break;\t\r",
+                    "\r",
+                    "                    case 'postal_code' :\r",
+                    "                    addressItem = {\r",
+                    "                        'item': 'Postcode', \r",
+                    "                    'value': results[0].address_components[i].long_name };\r",
+                    "                    geoAddress.addressItems.push( addressItem );\r",
+                    "                    break;\t\t\t\t\r",
+                    "                }\r",
+                    "            }\r",
+                    "        }\r",
+                    "        \r",
+                    "        // console.log( geoAddress );\r",
+                    "        // to load all addresses into store\r",
+                    "        store.setData( geoAddress );\r",
+                    "        \r",
+                    "        // run callback function\r",
+                    "        store.load( function(){ callback(store); } );\r",
+                    "\r",
+                    "    } else \r",
+                    "    {\r",
+                    "        Ext.Msg.alert( 'Info: No results found !' );\r",
+                    "        return false;\r",
+                    "    }\r",
+                    "} else \r",
+                    "{\r",
+                    "    Ext.Msg.alert( 'Info: Geocoder failed due to: ' + status );\r",
+                    "    return false;\r",
+                    "}\r",
+                    "\r",
+                    "});\r",
+                    "\r",
+                    "\r",
+                    ""
+                ]
+            },
+            "designerId": "7a2ea05f-75d2-4a19-8875-3313f6e89be2"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "positionbtn",
+                "selector": "#mypositionbtn"
+            },
+            "designerId": "842369e1-c674-4746-87d6-b77bbcf3ceb0"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonTap",
+                "implHandler": [
+                    "var me = this;\r",
+                    "\r",
+                    "Ext.Viewport.setMasked({ message: 'Search...' });\r",
+                    "\r",
+                    "// Get the user's location\r",
+                    "me.getPosition( function (location) {\r",
+                    "\r",
+                    "    // Use Geo to get the political address\r",
+                    "    me.getAddress(location, function (store) {\r",
+                    "\r",
+                    "        // Bind data to the list and display it\r",
+                    "        me.getAddressList().setStore(store);\r",
+                    "\t\treturn true;\r",
+                    "    });\r",
+                    "});\r",
+                    "\r",
+                    "Ext.Viewport.setMasked(false);\r",
+                    "\r",
+                    "this.getAddressTab().setActiveItem ( this.getAddressListContainer() );"
+                ],
+                "name": "tap",
+                "designer|targetType": "Ext.Button",
+                "designer|controlQuery": "positionbtn"
+            },
+            "designerId": "e168c4e0-900d-4e75-9e7a-a3e94a2c1557"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "addressList",
+                "selector": "#addresslist"
+            },
+            "designerId": "38a98620-4f7d-4383-85fd-bca52d9cf699"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "this.getAddressTab().setActiveItem( this.getWelcomePanel() );"
+                ]
+            },
+            "designerId": "26f55ef0-2494-46d2-a5bb-2c893444efe1"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "detailMap",
+                "selector": "#detailMap"
+            },
+            "designerId": "50d977ab-5e33-4273-944f-bba06011d281"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMapActivate",
+                "implHandler": [
+                    "Ext.Viewport.setMasked({ message: 'Search...' });\r",
+                    "\r",
+                    "var lat = detailMap._lati,\r",
+                    "    lng = detailMap._longi,\r",
+                    "    centerMap = Ext.Function.createDelayed( function() {\r",
+                    "        this.setMapOptions({\r",
+                    "            zoom: 18\r",
+                    "        });\r",
+                    "    this.setMapCenter({\r",
+                    "        latitude: lat,\r",
+                    "        longitude: lng\r",
+                    "    });\r",
+                    "}, 2500, newActiveItem );\r",
+                    "\r",
+                    "if (lat && lng) {\r",
+                    "\r",
+                    "    centerMap();\r",
+                    "\r",
+                    "}else {\r",
+                    "    Ext.Msg.alert(\"Could not find location!\");\r",
+                    "}\r",
+                    "\r",
+                    "Ext.Viewport.setMasked( false );"
+                ],
+                "name": "activate",
+                "designer|targetType": "Ext.Map",
+                "designer|controlQuery": "detailMap"
+            },
+            "designerId": "f78e7cbc-df81-494b-86ef-3c354a28f745"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "addressTab",
+                "selector": "#addressTab"
+            },
+            "designerId": "92ec7d62-a31c-4454-99e5-adc130975a62"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "addressListContainer",
+                "selector": "#addressListContainer"
+            },
+            "designerId": "64dad690-8203-4774-953e-e818460c0ea7"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "welcomePanel",
+                "selector": "#welcomePanel"
+            },
+            "designerId": "60816467-aae8-47c5-9c32-fb6695830c2e"
+        }
+    ]
+}

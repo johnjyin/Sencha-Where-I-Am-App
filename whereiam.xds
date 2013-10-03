@@ -1,0 +1,92 @@
+{
+    "name": "whereiam",
+    "settings": {},
+    "xdsVersion": "2.2.2",
+    "xdsBuild": 991,
+    "schemaVersion": 1,
+    "upgradeVersion": 210000000503,
+    "framework": "touch22",
+    "topInstanceFileMap": {
+        "1eff6a84-911f-4d23-ab94-4cf1800e2b0b": {
+            "paths": [
+                "metadata/resource/Library"
+            ],
+            "className": "Library"
+        },
+        "8333e79a-6baf-49b1-8fd9-12e36df3d0bb": {
+            "paths": [
+                "metadata/view/MainNav",
+                "app/view/override/MainNav.js",
+                "app/view/MainNav.js"
+            ],
+            "className": "MainNav"
+        },
+        "4e9ba912-5dce-4382-8a7c-6f058f5bfd39": {
+            "paths": [
+                "metadata/view/WhereiamTab",
+                "app/view/override/WhereiamTab.js",
+                "app/view/WhereiamTab.js"
+            ],
+            "className": "WhereiamTab"
+        },
+        "47cb0f7a-6b69-46b9-8abd-3ee1bb168cc0": {
+            "paths": [
+                "metadata/model/AddressData",
+                "app/model/override/AddressData.js",
+                "app/model/AddressData.js"
+            ],
+            "className": "AddressData"
+        },
+        "3c245df5-34ef-4285-ae85-43a09c59c9ad": {
+            "paths": [
+                "metadata/controller/AddressCtrl",
+                "app/controller/override/AddressCtrl.js",
+                "app/controller/AddressCtrl.js"
+            ],
+            "className": "AddressCtrl"
+        },
+        "c72c1808-779b-44ff-8a42-27fcd4ea65fc": {
+            "paths": [
+                "metadata/resource/GoogleMapsAPI"
+            ],
+            "className": "GoogleMapsAPI"
+        },
+        "b7cc8b45-d60e-4eb4-be27-8334c41aca31": {
+            "paths": [
+                "metadata/store/AddressStore",
+                "app/store/override/AddressStore.js",
+                "app/store/AddressStore.js"
+            ],
+            "className": "AddressStore"
+        },
+        "8ebeff1b-b0ac-48d6-8e85-d068bc0ae726": {
+            "paths": [
+                "metadata/resource/css"
+            ],
+            "className": "css"
+        }
+    },
+    "viewOrderMap": {
+        "view": [
+            "8333e79a-6baf-49b1-8fd9-12e36df3d0bb",
+            "4e9ba912-5dce-4382-8a7c-6f058f5bfd39"
+        ],
+        "store": [
+            "b7cc8b45-d60e-4eb4-be27-8334c41aca31"
+        ],
+        "controller": [
+            "3c245df5-34ef-4285-ae85-43a09c59c9ad"
+        ],
+        "model": [
+            "47cb0f7a-6b69-46b9-8abd-3ee1bb168cc0"
+        ],
+        "resource": [
+            "1eff6a84-911f-4d23-ab94-4cf1800e2b0b",
+            "c72c1808-779b-44ff-8a42-27fcd4ea65fc",
+            "8ebeff1b-b0ac-48d6-8e85-d068bc0ae726"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

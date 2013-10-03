@@ -1,0 +1,25 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "AddressData"
+        ],
+        "stores": [
+            "AddressStore"
+        ],
+        "views": [
+            "MainNav",
+            "WhereiamTab"
+        ],
+        "controllers": [
+            "AddressCtrl"
+        ],
+        "name": "MyApp"
+    },
+    "designerId": "application"
+}

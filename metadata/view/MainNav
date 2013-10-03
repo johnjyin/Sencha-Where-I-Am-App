@@ -1,0 +1,29 @@
+{
+    "type": "Ext.navigation.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MainNav",
+        "designer|userAlias": "mainnav",
+        "designer|initialView": true
+    },
+    "designerId": "8333e79a-6baf-49b1-8fd9-12e36df3d0bb",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Where I Am?"
+            },
+            "designerId": "31f96bac-2c36-4623-b9df-7f1570a90749",
+            "masterInstanceId": "4e9ba912-5dce-4382-8a7c-6f058f5bfd39"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "model": "AddressData",
+        "storeId": "addressStore",
+        "designer|userClassName": "AddressStore",
+        "designer|userAlias": "addressstore"
+    },
+    "designerId": "b7cc8b45-d60e-4eb4-be27-8334c41aca31",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Memory",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "designerId": "8dfdd532-da73-48da-8686-967a226f15fc",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": "addressItems"
+                    },
+                    "designerId": "45312ab4-e523-4509-919f-3f7b3d8f6a7b"
+                }
+            ]
+        }
+    ]
+}

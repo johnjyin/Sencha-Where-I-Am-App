@@ -1,0 +1,162 @@
+{
+    "type": "Ext.tab.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "ui": "light",
+        "designer|userClassName": "WhereiamTab",
+        "designer|userAlias": "whereiamtab"
+    },
+    "designerId": "4e9ba912-5dce-4382-8a7c-6f058f5bfd39",
+    "cn": [
+        {
+            "type": "Ext.tab.Bar",
+            "reference": {
+                "name": "tabBar",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": null,
+                "container|pack": null,
+                "docked": "top"
+            },
+            "designerId": "f9dc79c6-0559-49f7-978b-81e3d65c3880"
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Address",
+                "activeItem": 1,
+                "id": "addressTab",
+                "ui": "dark",
+                "designer|displayName": null,
+                "designer|createAlias": null,
+                "layout": "card"
+            },
+            "designerId": "802b8561-61e8-476d-b806-87f621d88142",
+            "cn": [
+                {
+                    "type": "Ext.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": [
+                            "home"
+                        ],
+                        "html": "<br /><br /><h1>Welcome !</h1>  <p>To press 'My Position' button to acquire your device's current location in Latitude/Longitude, and display the Latitude and Longitude as numeric values on the screen and also convert them to the political address (street, city, etc) using Google's GeoLocate API.<p> ",
+                        "id": "welcomePanel",
+                        "layout": "fit"
+                    },
+                    "designerId": "dcccdf85-00a5-4305-818f-bad215b78991"
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "hidden": null,
+                        "html": null,
+                        "id": "addressListContainer",
+                        "designer|displayName": null,
+                        "designer|createAlias": null,
+                        "layout": "fit",
+                        "scrollable": null
+                    },
+                    "designerId": "73eaa621-151e-4d78-a9b2-9c40fd7a1438",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "docked": null,
+                                "height": null,
+                                "id": "addresslist",
+                                "designer|createAlias": null,
+                                "store": "addressStore"
+                            },
+                            "designerId": "144bdc04-0c80-49f2-99d8-cfc35d12abe3",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "implHandler": [
+                                            "<div> {item} : {value}</div>"
+                                        ],
+                                        "designer|displayName": "itemTpl"
+                                    },
+                                    "designerId": "8278c0c6-67c8-4970-a39d-88cf10601ae9"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Toolbar",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|pack": "center",
+                        "docked": "bottom"
+                    },
+                    "designerId": "32f7d1b9-ed75-41d9-b9e0-da7fbe793dd4",
+                    "cn": [
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "mypositionbtn",
+                                "iconCls": "search",
+                                "text": "My Position"
+                            },
+                            "designerId": "1b6e4f88-fc8b-42a2-a01e-4e9b2bf8a324"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.Map",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Map",
+                "id": "detailMap"
+            },
+            "designerId": "929c8300-f75a-4d0d-acbe-cc068a23fd20"
+        }
+    ]
+}
