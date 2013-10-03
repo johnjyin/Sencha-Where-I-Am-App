@@ -20,11 +20,11 @@ WhereIAm Sencha Touch app with following features:
 
 Step:
 <ol>
-<li> Use Sencha Architect -> Sencha Touch to quick build app
-<li> Use Sencha CMD to create one blank app and transplant Touch app to blank app
-<li> Use Sencha CMD to build and deploy production app (Sencha Architect build process is too complex)
+<li> Use Sencha Architect -> Sencha Touch to quickly build app: WhereIAm
+<li> Use Sencha CMD to create one blank app and transplant WhereIAm app to the blank app
+<li> Use Sencha CMD to build out its production app (Sencha Architect building process is too complex)
 </ol>
 
 The left issues:
-- The production app is too big (1.07 MB) and need to be optimization
-- The building process of Sencha Architect is too complex and the production app can not run normally
+- The production app's size is too big (1.07 MB) and need further optimization
+- The building process of Sencha Architect is too complex and the result can not run normally
