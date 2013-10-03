@@ -1,7 +1,7 @@
 Sencha-Touch-Where-I-Am-App
 ===========================
 
-One Sencha Touch Google Map Mobile App
+One Sencha Touch & Google Map Mobile App
 
 Please click <a href="http://demo.ebizdesigner.com/whereiam" target="_blank"> <b>Here</b> </a> to run this mobile app.
 
